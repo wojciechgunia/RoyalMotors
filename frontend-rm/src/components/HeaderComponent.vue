@@ -56,8 +56,8 @@ onBeforeUnmount(() => {
 
 <template>
   <header
-    class="bg-transparent fixed right-0 top-0 z-50 w-[100%]"
-    :class="{ 'bg-[#222222]': isScrolled }"
+    class="fixed right-0 top-0 z-50 w-[100%]"
+    :style="{ background: isScrolled ? '#222222' : 'rgba(34, 34, 34, 0.75)' }"
   >
     <nav
       class="mx-auto flex max-w-7xl p-1 items-center justify-between lg:px-8"

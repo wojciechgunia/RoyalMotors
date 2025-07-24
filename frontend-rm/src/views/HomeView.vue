@@ -1,8 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CarPresenter3d from '@/components/car-presenter-3d/CarPresenter3d.vue'
+</script>
 
 <template>
-  <main class="p-10">
-    <h1 class="text-3xl text-white">Home Page</h1>
+  <main class="w-[100%] h-[100vh]">
+    <CarPresenter3d></CarPresenter3d>
+    <h1>Home</h1>
     <div class="h-[3000px]"></div>
   </main>
 </template>

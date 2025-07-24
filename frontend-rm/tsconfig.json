@@ -7,5 +7,11 @@
     {
       "path": "./tsconfig.app.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "types": ["three"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
 }
