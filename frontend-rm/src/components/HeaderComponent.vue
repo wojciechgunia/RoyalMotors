@@ -64,10 +64,10 @@ onBeforeUnmount(() => {
       aria-label="Global"
     >
       <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5 flex items-center">
+        <RouterLink to="/" class="-m-1.5 p-1.5 flex items-center">
           <img class="h-[70px] w-auto" src="/RM-logo.png" alt="" />
           <p class="comp-name pl-3">Royal Motors</p>
-        </a>
+        </RouterLink>
       </div>
       <div class="flex lg:hidden">
         <button
