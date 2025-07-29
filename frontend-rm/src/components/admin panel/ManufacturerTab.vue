@@ -7,7 +7,7 @@ import { initFlowbite } from 'flowbite'
 const adminPanelStore = useAdminPanelStore()
 
 onMounted(() => {
-  adminPanelStore.getManufacturers(1)
+  adminPanelStore.getManufacturers()
   initFlowbite()
 })
 
@@ -49,11 +49,11 @@ const editManufacturer = async (payload: Manufacturer) => {
         <template
           v-if="
             adminPanelStore.manufacturersCollection &&
-            adminPanelStore.manufacturersCollection.data.length > 0
+            adminPanelStore.manufacturersCollection.length > 0
           "
         >
           <tr
-            v-for="manufacturer in adminPanelStore.manufacturersCollection.data"
+            v-for="manufacturer in adminPanelStore.manufacturersCollection"
             v-bind:key="manufacturer.code"
             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
           >

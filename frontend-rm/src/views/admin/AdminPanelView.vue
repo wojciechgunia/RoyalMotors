@@ -173,7 +173,6 @@ onMounted(() => {
           role="tabpanel"
           aria-labelledby="settings-tab"
         >
-          <h1 class="text-3xl mb-2 text-white">Cars</h1>
           <CarsTab></CarsTab>
         </div>
         <div
