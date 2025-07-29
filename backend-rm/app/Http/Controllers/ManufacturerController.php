@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 
 class ManufacturerController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $perPage = $request->input('per_page', 15);
-        return Manufacturer::withCount('cars')->paginate($perPage);
+        return Manufacturer::all();
     }
 
     public function store(Request $request)

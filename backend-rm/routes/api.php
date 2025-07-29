@@ -14,6 +14,7 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('file', [FileController::class, 'store']);
+        Route::get('file', [FileController::class, 'index']);
         Route::apiResource('manufacturers/cars', CarController::class)->except(['index', 'show']);
         Route::apiResource('manufacturers', ManufacturerController::class)->except(['index', 'show']);
     });
@@ -22,7 +23,7 @@ Route::prefix('v1')->group(function () {
         return response()->json('unauthorised', 403);
     });
 
-    Route::get('file/{uuid}', [FileController::class, 'show']);
+    Route::get('/file/{path}', [FileController::class, 'show'])->where('path', '.*');
     Route::apiResource('manufacturers/cars', CarController::class)->only(['index', 'show']);
     Route::apiResource('manufacturers', ManufacturerController::class)->only(['index', 'show']);
 });

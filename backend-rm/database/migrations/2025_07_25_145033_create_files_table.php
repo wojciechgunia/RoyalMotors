@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
+            $table->string('uuid')->unique();
             $table->string('filename')->unique();
             $table->string('original_name');
             $table->enum('category', ['pictures', '3dmodels', 'documents']);

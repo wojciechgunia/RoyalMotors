@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->string('3d_model_url')->nullable();
             $table->float('min_price');
-            $table->foreignId(\App\Models\Manufacturer::class);
+            $table->foreignId('manufacturer_id')->constrained()->onDelete('cascade');
             $table->unique(['model', 'year_of_manufacture', 'version']);
             $table->timestamps();
         });

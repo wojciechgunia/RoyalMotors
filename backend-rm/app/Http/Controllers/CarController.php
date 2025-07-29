@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Manufacturer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -32,14 +33,16 @@ class CarController extends Controller
             'image_url' => 'nullable|string',
             '3d_model_url' => 'nullable|string',
             'min_price' => 'required|numeric',
-            'manufacturer_id' => 'required|exists:manufacturers,id',
+            'manufacturer_code' => 'required|exists:manufacturers,code',
         ]);
 
-        $data['uuid'] = Str::uuid();
-
+        $data['uuid'] = (string) Str::uuid();
+        $manufacturer = Manufacturer::where('code', $data['manufacturer_code'])->firstOrFail();
+        unset($data['manufacturer_code']);
+        $data['manufacturer_id'] = $manufacturer->id;
         $car = Car::create($data);
 
-        return response()->json($car->load('manufacturer'), 201);
+        return response()->json($car, 201);
     }
 
     public function show($uuid)
@@ -68,12 +71,13 @@ class CarController extends Controller
             'image_url' => 'nullable|string',
             '3d_model_url' => 'nullable|string',
             'min_price' => 'sometimes|required|numeric',
-            'manufacturer_id' => 'sometimes|required|exists:manufacturers,id',
+            'manufacturer_code' => 'required|exists:manufacturers,code',
         ]);
-
+        $manufacturer = Manufacturer::where('code', $data['manufacturer_code'])->firstOrFail();
+        unset($data['manufacturer_code']);
+        $data['manufacturer_id'] = $manufacturer->id;
         $car->update($data);
-
-        return response()->json($car->fresh('manufacturer'));
+        return response()->json($car);
     }
 
     public function destroy($uuid)
