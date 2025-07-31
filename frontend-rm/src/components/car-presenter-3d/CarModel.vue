@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useGLTF } from '@tresjs/cientos'
 
-const path = `http://localhost:8000/api/v1/file/3dmodels/kia/scene.gltf`
+const props = defineProps<{ path: string }>()
 
-const { scene } = await useGLTF(path)
+const { scene } = await useGLTF(props.path)
 </script>
 
 <template>

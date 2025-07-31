@@ -8,8 +8,18 @@ const isLeftClick = ref(false)
 
 const { camera, renderer } = useTresContext()
 const controls = ref<OrbitControls>()
+const orbitVal = ref<OrbitControls>()
 
-onMounted(() => {
+function resetOrbit() {
+  controls.value?.reset()
+  initControl()
+}
+
+defineExpose({
+  resetOrbit,
+})
+
+const initControl = () => {
   if (!camera.value || !renderer.value) return
 
   const domEl = renderer.value.domElement
@@ -25,6 +35,7 @@ onMounted(() => {
   orbit.minDistance = 120
   orbit.target.set(0, 50, 0)
   controls.value = orbit
+  orbitVal.value = orbit
 
   domEl.addEventListener('contextmenu', (e) => e.preventDefault())
 
@@ -55,7 +66,9 @@ onMounted(() => {
     },
     { passive: false },
   )
-})
+}
+
+onMounted(initControl)
 
 useRenderLoop().onLoop(() => {
   controls.value?.update()

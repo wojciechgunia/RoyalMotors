@@ -148,7 +148,7 @@ export const useAdminPanelStore = defineStore('adminPanel', () => {
     }
   }
 
-  const createFiles = async (payload: any, node?: FormKitNode, category: string) => {
+  const createFiles = async (payload: undefined, category: string, node?: FormKitNode) => {
     try {
       isLoading.value = true
       await axiosInstance.post('/file', payload)
